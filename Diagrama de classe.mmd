@@ -1,0 +1,307 @@
+classDiagram
+%% =========================
+%% Domínio Restaurante (25 classes)
+%% =========================
+
+class Restaurante {
+  +Long id
+  +String nome
+  +String cnpj
+}
+
+class Unidade {
+  +Long id
+  +String nome
+}
+
+class Endereco {
+  +Long id
+  +String logradouro
+  +String numero
+  +String complemento
+  +String bairro
+  +String cidade
+  +String uf
+  +String cep
+}
+
+class Usuario {
+  +Long id
+  +String nome
+  +String email
+  +String senhaHash
+  +boolean ativo
+}
+
+class Perfil {
+  +Long id
+  +String nome
+}
+
+class Permissao {
+  +Long id
+  +String codigo
+  +String descricao
+}
+
+class Cliente {
+  +Long id
+  +String nome
+  +String email
+  +String telefone
+  +boolean isAnonimo
+}
+
+class Mesa {
+  +Long id
+  +Integer numero
+  +Integer capacidade
+  +String qrFixo
+}
+
+class Atendimento {
+  +Long id
+  +Instant inicio
+  +Instant fim
+}
+
+class Reserva {
+  +Long id
+  +LocalDateTime dataHora
+  +Integer pessoas
+  +StatusReserva status
+}
+
+class Cardapio {
+  +Long id
+  +String nome
+  +LocalDate inicioVigencia
+  +LocalDate fimVigencia
+  +boolean exibirNoAutoatendimento
+  +String visibilidade
+}
+
+class CategoriaItem {
+  +Long id
+  +String nome
+  +Integer ordem
+}
+
+class ItemCardapio {
+  +Long id
+  +String nome
+  +String descricao
+  +String descricaoCurta
+  +BigDecimal preco
+  +boolean disponivel
+  +boolean exibirNoAutoatendimento
+  +Integer tempoPreparoEstimado
+  +Integer limitePorPedido
+}
+
+class Ingrediente {
+  +Long id
+  +String nome
+  +String unidadeMedida
+  +BigDecimal custoMedio
+}
+
+class ReceitaItem {
+  +Long id
+  +BigDecimal quantidade
+}
+
+class Pedido {
+  +Long id
+  +TipoAtendimento tipoAtendimento
+  +StatusPedido status
+  +String origem  %% MESA_QR/SALAO/ENTREGA/RETIRADA
+  +BigDecimal subtotal
+  +BigDecimal desconto
+  +BigDecimal total
+  +Instant criadoEm
+  +Instant atualizadoEm
+}
+
+class ItemPedido {
+  +Long id
+  +Integer quantidade
+  +BigDecimal precoUnitario
+  +BigDecimal precoTotal
+  +String observacaoCliente
+}
+
+class Pagamento {
+  +Long id
+  +FormaPagamento forma
+  +StatusPagamento status
+  +BigDecimal valor
+  +Instant dataHora
+}
+
+class PedidoStatusHistorico {
+  +Long id
+  +StatusPedido status
+  +Instant registradoEm
+  +String observacao
+  +Long bySessaoClienteMesaId
+  +String origemAlteracao
+}
+
+class Fornecedor {
+  +Long id
+  +String nome
+  +String cnpj
+  +String email
+  +String telefone
+}
+
+class Compra {
+  +Long id
+  +Instant criadaEm
+  +Instant aprovadaEm
+  +BigDecimal total
+}
+
+class ItemCompra {
+  +Long id
+  +BigDecimal quantidade
+  +BigDecimal precoUnitario
+  +BigDecimal subtotal
+}
+
+%% ==========================================
+%% Novas para QR/Login efêmero na mesa (3)
+%% ==========================================
+class ChaveAcessoMesa {
+  +Long id
+  +String codigo
+  +Instant criadoEm
+  +Instant expiraEm
+  +boolean ativo
+  +String escopo
+  +String ipCriacao
+  +String userAgentCriacao
+}
+
+class SessaoClienteMesa {
+  +Long id
+  +Instant inicio
+  +Instant ultimoAcesso
+  +Instant expiraEm
+  +StatusSessao status
+  +String deviceId
+  +String ip
+  +String userAgent
+  +BigDecimal limiteValor
+  +Integer limiteItens
+}
+
+class TokenEfemero {
+  +Long id
+  +String token  %% armazene hash
+  +Instant emitidoEm
+  +Instant expiraEm
+  +boolean revogado
+  +String escopo
+}
+
+%% =========================
+%% Enums
+%% =========================
+class TipoAtendimento {
+  <<enumeration>>
+  SALAO
+  ENTREGA
+  RETIRADA
+}
+
+class StatusPedido {
+  <<enumeration>>
+  RASCUNHO
+  CRIADO
+  EM_PREPARO
+  PRONTO
+  ENTREGUE
+  CANCELADO
+}
+
+class StatusPagamento {
+  <<enumeration>>
+  PENDENTE
+  APROVADO
+  NEGADO
+  ESTORNADO
+}
+
+class FormaPagamento {
+  <<enumeration>>
+  DINHEIRO
+  CREDITO
+  DEBITO
+  PIX
+  VALE_REFEICAO
+}
+
+class StatusReserva {
+  <<enumeration>>
+  PENDENTE
+  CONFIRMADA
+  CANCELADA
+  NO_SHOW
+}
+
+class StatusSessao {
+  <<enumeration>>
+  ATIVA
+  EXPIRADA
+  REVOGADA
+}
+
+%% =========================
+%% Relacionamentos + Cardinalidades
+%% =========================
+Restaurante "1" -- "0..*" Unidade : possui >
+Unidade "0..1" -- "0..1" Endereco : possui >
+Unidade "1" -- "0..*" Mesa : tem >
+Cliente "0..1" -- "0..1" Endereco : possui >
+
+Usuario "0..*" -- "0..*" Perfil : possui >
+Perfil "0..*" -- "0..*" Permissao : concede >
+
+Unidade "1" -- "0..*" Atendimento : abre >
+Mesa "1" -- "0..*" Atendimento : recebe >
+Usuario "1" -- "0..*" Atendimento : garcom >
+Cliente "0..1" -- "0..*" Atendimento : participa >
+
+Cliente "1" -- "0..*" Reserva : faz >
+Mesa "1" -- "0..*" Reserva : reserva >
+Reserva "0..1" -- "0..1" Atendimento : gera-checkin >
+
+Cardapio "1" -- "0..*" ItemCardapio : contem >
+CategoriaItem "1" -- "0..*" ItemCardapio : classifica >
+
+ItemCardapio "1" -- "0..*" ReceitaItem : compoe >
+Ingrediente "1" -- "0..*" ReceitaItem : insumo >
+
+Atendimento "1" -- "0..*" Pedido : origina >
+Unidade "1" -- "0..*" Pedido : processa >
+Cliente "0..1" -- "0..*" Pedido : realiza >
+SessaoClienteMesa "0..1" -- "0..*" Pedido : cria >
+
+Pedido "1" -- "0..*" ItemPedido : possui >
+ItemCardapio "1" -- "0..*" ItemPedido : referencia >
+
+Pedido "1" -- "0..*" Pagamento : liquida >
+Pedido "1" -- "0..*" PedidoStatusHistorico : historiza >
+
+Unidade "1" -- "0..*" Compra : realiza >
+Fornecedor "1" -- "0..*" Compra : fornece >
+Compra "1" -- "0..*" ItemCompra : contem >
+Ingrediente "1" -- "0..*" ItemCompra : comprado >
+
+%% QR / Sessões / Tokens
+Atendimento "1" -- "0..*" ChaveAcessoMesa : emite >
+Atendimento "1" -- "0..*" SessaoClienteMesa : possui >
+Cliente "0..1" -- "0..*" SessaoClienteMesa : vincula >
+SessaoClienteMesa "1" -- "0..*" TokenEfemero : tokens >
