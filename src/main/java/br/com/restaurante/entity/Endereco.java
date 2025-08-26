@@ -2,19 +2,21 @@ package br.com.restaurante.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity
 @Data
-public class Usuario {
+public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column (nullable = false)
-    private String nome;
-    @Column (nullable = false, unique = true)
-    private String email;
-    private String senha;
-    private boolean ativo;
+    private String logradouro;
+    private String numero;
+    private String complemento;
+    private String bairro;
+    private String cidade;
+    private String uf;
+    private String cep;
+
+
 }
