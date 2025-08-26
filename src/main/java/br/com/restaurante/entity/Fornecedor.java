@@ -5,19 +5,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
-import lombok.Generated;
-
-import java.math.BigDecimal;
-import java.time.Instant;
 
 @Entity
 @Data
-public class Compra {
+public class Fornecedor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Instant criadaEm;
-    private Instant aprovadaEm;
-    private double total;
+    private long id;
+    private String nome;
+    private String cnpj;
+    private String email;
+    private String telefone;
 }
-
