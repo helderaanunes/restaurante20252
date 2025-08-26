@@ -7,6 +7,8 @@ import jakarta.persistence.Id;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -14,14 +16,15 @@ public class SessaoClienteMesa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Instant inicio;
-    private Instant ultimoAcesso;
-    private Instant expiraEm;
-    private StatusSessao status;
-    private  String deviceId;
-    private  String ip;
-    private  StringuserAgent;
+    private LocalDateTime inicio;
+    private LocalDateTime ultimoAcesso;
+    private LocalDateTime expiraEm;
+    private Long status;
+    private String deviceId;
+    private String ip;
+    private String userAgent;
     private BigDecimal limiteValor;
     private Integer limiteItens;
+}
 
 
