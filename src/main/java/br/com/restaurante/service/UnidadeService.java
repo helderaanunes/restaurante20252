@@ -11,8 +11,8 @@ public class UnidadeService {
     @Autowired
     private UnidadeRepository unidadeRepository;
 
-    public void salvar(Unidade novo){
+    public Unidade salvar(Unidade novo){
 
-        unidadeRepository.save(novo);
+        return unidadeRepository.save(novo);
     }
 }
