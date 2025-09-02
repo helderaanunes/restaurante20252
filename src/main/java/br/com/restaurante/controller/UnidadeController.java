@@ -1,5 +1,6 @@
 package br.com.restaurante.controller;
 
+import br.com.restaurante.entity.Unidade;
 import br.com.restaurante.service.UnidadeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,4 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class UnidadeController {
     @Autowired
     private UnidadeService unidadeService;
+
+    public void salvar (Unidade unidade){
+        unidadeService.salvar(unidade);
+    }
 }
