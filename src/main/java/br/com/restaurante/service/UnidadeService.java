@@ -15,4 +15,8 @@ public class UnidadeService {
 
         return unidadeRepository.save(novo);
     }
+
+    public Iterable<Unidade> listar(){
+        return unidadeRepository.findAll();
+    }
 }
