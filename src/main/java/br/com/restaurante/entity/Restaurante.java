@@ -26,10 +26,12 @@ public class Restaurante {
     }
 
     public String getNome() {
+
         return nome;
     }
 
     public void setNome(String nome) {
+
         this.nome = nome;
     }
 
@@ -38,6 +40,7 @@ public class Restaurante {
     }
 
     public void setCnpj(String cnpj) {
+
         this.cnpj = cnpj;
     }
 
