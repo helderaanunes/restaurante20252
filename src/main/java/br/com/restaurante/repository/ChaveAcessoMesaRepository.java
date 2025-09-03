@@ -1,11 +1,9 @@
 package br.com.restaurante.repository;
 
-import br.com.restaurante.entity.Unidade;
+import br.com.restaurante.entity.ChaveAcessoMesa;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-
-public interface UnidadeRepository extends CrudRepository <Unidade,Long> {
+public interface ChaveAcessoMesaRepository extends CrudRepository<ChaveAcessoMesa, Long>{
 }
-
