@@ -23,9 +23,9 @@ public class FornecedorController {
                 , HttpStatus.OK);
 
     }
+    @GetMapping("/fornecedor")
+    public Iterable<Fornecedor> listar(){
+        return fornecedorService.listar();
+    }
 }
 
-@GetMapping("/fornecedor")
-public Iterable<Fornecedor> listar(){
-    return fornecedorService.listar();
-}
