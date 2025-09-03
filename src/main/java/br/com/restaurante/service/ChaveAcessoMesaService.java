@@ -10,7 +10,7 @@ public class ChaveAcessoMesaService {
     @Autowired
     private ChaveAcessoMesaRepository chaveAcessoMesaRepository;
 
-    public void salvar(ChaveAcessoMesa novo){
-        chaveAcessoMesaRepository.save(novo);
+    public ChaveAcessoMesa salvar(ChaveAcessoMesa novo){
+        return chaveAcessoMesaRepository.save(novo);
     }
 }
