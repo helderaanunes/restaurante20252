@@ -1,7 +1,7 @@
 package br.com.restaurante.controller;
 
-import br.com.restaurante.entity.Usuario;
-import br.com.restaurante.service.UsuarioService;
+import br.com.restaurante.entity.Mesa;
+import br.com.restaurante.service.MesaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,22 +11,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class UsuarioController {
-
+public class MesaController {
     @Autowired
-    private UsuarioService usuarioService;
+    private MesaService mesaService;
 
-    @PostMapping("/usuario")
-    public ResponseEntity<Usuario> salvar (@RequestBody Usuario usuario){
-        return new ResponseEntity<Usuario>(
-                usuarioService.salvar(usuario)
+    @PostMapping("/mesa")
+    public ResponseEntity<Mesa> salvar (@RequestBody Mesa mesa){
+        return new ResponseEntity<Mesa>(
+                mesaService.salvar(mesa)
                 , HttpStatus.OK);
+
     }
-
-    @GetMapping("/usuario")
-    public Iterable<Usuario> listar(){
-        return usuarioService.listar();
+    @GetMapping("/mesa")
+    public Iterable<Mesa> listar(){
+        return mesaService.listar();
     }
-
-
 }
