@@ -1,5 +1,6 @@
 package br.com.restaurante;
 
+import br.com.restaurante.entity.Usuario;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
