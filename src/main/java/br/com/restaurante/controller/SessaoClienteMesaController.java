@@ -17,13 +17,14 @@ public class SessaoClienteMesaController {
     private SessaoClienteMesaService sessaoClienteMesaService;
 
     @PostMapping("/sessaoclientemesa")
-    public ResponseEntity<SessaoClienteMesa> salvar (@RequestBody SessaoClienteMesa sessaoclientemesa){
+    public ResponseEntity<SessaoClienteMesa> salvar(@RequestBody SessaoClienteMesa sessaoclientemesa) {
         return new ResponseEntity<SessaoClienteMesa>(
                 sessaoClienteMesaService.salvar(sessaoclientemesa)
                 , HttpStatus.OK);
     }
+
+    @GetMapping("/sessaoclientemesa")
+    public Iterable<SessaoClienteMesa> listar() {
+        return sessaoClienteMesaService.listar();
     }
-@GetMapping("/sessaoclientemesa")
-public Iterable<SessaoClienteMesa> listar(){
-     return sessaoclientemesaService.listar();
 }
