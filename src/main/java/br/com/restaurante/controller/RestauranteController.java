@@ -27,5 +27,4 @@ public class RestauranteController {
     public Iterable<Restaurante> listar(){
         return restauranteService.listar();
     }
-    
 }
