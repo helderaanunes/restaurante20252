@@ -10,7 +10,7 @@ public class CardapioService {
     @Autowired
     private CardapioRepository cardapioRepository;
 
-    public void salvar(Cardapio novo){
-        cardapioRepository.save(novo);
+    public Cardapio salvar(Cardapio novo){
+        return cardapioRepository.save(novo);
     }
 }
