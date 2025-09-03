@@ -13,4 +13,9 @@ public class CardapioService {
     public Cardapio salvar(Cardapio novo){
         return cardapioRepository.save(novo);
     }
+
+    public Iterable<Cardapio> listar(){
+        return cardapioRepository.findAll();
+    }
+
 }
