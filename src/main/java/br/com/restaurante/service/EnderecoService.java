@@ -15,4 +15,7 @@ public class EnderecoService  {
     public Endereco salvar(Endereco novo){
        return enderecoRepository.save(novo);
     }
+    public Iterable<Endereco> listar(){
+        return enderecoRepository.findAll();
+    }
 }
