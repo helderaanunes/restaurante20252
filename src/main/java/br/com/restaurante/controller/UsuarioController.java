@@ -28,5 +28,5 @@ public class UsuarioController {
         return usuarioService.listar();
     }
 
-
 }
+
