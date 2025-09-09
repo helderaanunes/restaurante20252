@@ -18,4 +18,8 @@ public class ChaveAcessoMesaService {
     public Iterable<ChaveAcessoMesa> listar(){
         return chaveAcessoMesaRepository.findAll();
     }
+
+    public ChaveAcessoMesa atualizar(ChaveAcessoMesa chaveAcessoMesa){
+        return chaveAcessoMesaRepository.save(chaveAcessoMesa);
+    }
 }
