@@ -28,4 +28,14 @@ public class ChaveAcessoMesaController {
     atualizar(@RequestBody ChaveAcessoMesa chaveAcessoMesa){
         return new ResponseEntity<ChaveAcessoMesa>(chaveAcessoMesaService.atualizar(chaveAcessoMesa), HttpStatus.OK);
     }
+
+    @DeleteMapping("/chaveAcessoMesa/{id}")
+    public void delete (@PathVariable Long id){
+        chaveAcessoMesaService.remover(id);
+    }
+
+    @GetMapping("/usuario/{id}")
+    public ResponseEntity<ChaveAcessoMesa> pegarPorId(@PathVariable Long id){
+        return new ResponseEntity<ChaveAcessoMesa>(chaveAcessoMesaService.pegarPorId(id).get(), HttpStatus.OK);
+    }
 }

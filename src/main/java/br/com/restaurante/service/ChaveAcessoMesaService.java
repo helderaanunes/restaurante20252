@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.Optional;
+
 @Service
 public class ChaveAcessoMesaService {
     @Autowired
@@ -21,5 +23,14 @@ public class ChaveAcessoMesaService {
 
     public ChaveAcessoMesa atualizar(ChaveAcessoMesa chaveAcessoMesa){
         return chaveAcessoMesaRepository.save(chaveAcessoMesa);
+    }
+
+    public void remover (Long id){
+        chaveAcessoMesaRepository.deleteById(id);
+
+    }
+
+    public Optional<ChaveAcessoMesa> pegarPorId(Long id){
+        return  chaveAcessoMesaRepository.findById(id);
     }
 }
