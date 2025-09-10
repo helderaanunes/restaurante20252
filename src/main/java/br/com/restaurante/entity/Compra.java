@@ -19,5 +19,37 @@ public class Compra {
     private Instant criadaEm;
     private Instant aprovadaEm;
     private double total;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Instant getCriadaEm() {
+        return criadaEm;
+    }
+
+    public void setCriadaEm(Instant criadaEm) {
+        this.criadaEm = criadaEm;
+    }
+
+    public Instant getAprovadaEm() {
+        return aprovadaEm;
+    }
+
+    public void setAprovadaEm(Instant aprovadaEm) {
+        this.aprovadaEm = aprovadaEm;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
 }
 
