@@ -3,7 +3,9 @@ package br.com.restaurante.service;
 import br.com.restaurante.entity.ItemCardapio;
 import br.com.restaurante.repository.ItemCardapioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ItemCardapioService {
 
     @Autowired

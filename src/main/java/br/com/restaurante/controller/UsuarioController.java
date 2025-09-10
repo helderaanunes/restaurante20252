@@ -5,10 +5,7 @@ import br.com.restaurante.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UsuarioController {
@@ -28,5 +25,19 @@ public class UsuarioController {
         return usuarioService.listar();
     }
 
-
+    @PutMapping("/usuario")
+    public ResponseEntity<Usuario>
+    atualizar(@RequestBody Usuario usuario){
+        return new ResponseEntity<Usuario>
+                (usuarioService.atualizar(usuario),HttpStatus.OK);
+    }
+    @DeleteMapping("/usuario/{id}")
+    public void delete (@PathVariable Long id){
+        usuarioService.remover(id);
+    }
+    @GetMapping("/usuario/{id}")
+    public ResponseEntity<Usuario> pegarPorId(@PathVariable Long id){
+        return new ResponseEntity<Usuario>(
+                usuarioService.pegarPorId(id).get(),HttpStatus.OK);
+    }
 }
