@@ -34,7 +34,7 @@ public class ChaveAcessoMesaController {
         chaveAcessoMesaService.remover(id);
     }
 
-    @GetMapping("/usuario/{id}")
+    @GetMapping("/chaveAcessoMesa/{id}")
     public ResponseEntity<ChaveAcessoMesa> pegarPorId(@PathVariable Long id){
         return new ResponseEntity<ChaveAcessoMesa>(chaveAcessoMesaService.pegarPorId(id).get(), HttpStatus.OK);
     }
