@@ -26,7 +26,7 @@ public class CompraService {
     }
 
     public void remover (Long id){
-        compraRepository.deleteById();
+        compraRepository.deleteById(id);
     }
 
     public Optional <Compra> pegarPorId(Long id){
