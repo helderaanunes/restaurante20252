@@ -5,10 +5,7 @@ import br.com.restaurante.service.MesaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class MesaController {
@@ -26,4 +23,17 @@ public class MesaController {
     public Iterable<Mesa> listar(){
         return mesaService.listar();
     }
+    @PutMapping("/mesa")
+    public ResponseEntity<Mesa> atualizar(@RequestBody Mesa mesa){
+        return new ResponseEntity<Mesa>(mesaService.atualizar(mesa), HttpStatus.OK);
+    }
+    @DeleteMapping("/mesa/{id}")
+    public void delete (@PathVariable Long id){
+        mesaService.remover(id);
+    }
+    @GetMapping("/mesa/{id}")
+    public ResponseEntity<Mesa> pegarPorId(@PathVariable Long id){
+        return new ResponseEntity<Mesa>(mesaService.pegarPorId(id).get(), HttpStatus.OK);
+    }
+
 }
