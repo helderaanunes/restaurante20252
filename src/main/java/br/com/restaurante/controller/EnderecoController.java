@@ -5,10 +5,8 @@ import br.com.restaurante.service.EnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 @RestController
 public class EnderecoController {
 
@@ -25,5 +23,20 @@ public class EnderecoController {
     @GetMapping("/endereco")
     public Iterable<Endereco> listar(){
         return enderecoService.listar();
+    }
+
+    @PutMapping("/endereco")
+    public ResponseEntity<Endereco>
+    atualizar(@RequestBody Endereco endereco){
+        return new ResponseEntity<Endereco>(enderecoService.atualizar(endereco),HttpStatus.OK);
+
+    }
+    @DeleteMapping("/endereco/{id}")
+    public  void delete(@PathVariable Long id){
+        enderecoService.remover(id);
+    }
+    @GetMapping("/endereco/{id}")
+    public ResponseEntity<Endereco> pegarPorId(@PathVariable Long id){
+        return new ResponseEntity<Endereco>(enderecoService.pegarPorId(id).get(),HttpStatus.OK);
     }
 }

@@ -3,9 +3,13 @@ package br.com.restaurante.service;
 import br.com.restaurante.entity.Atendimento;
 import br.com.restaurante.repository.AtendimentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 
 import java.util.Optional;
 
+
+@Service
 public class AtendimentoService {
 
     @Autowired
