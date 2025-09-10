@@ -5,10 +5,7 @@ import br.com.restaurante.service.AtendimentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class AtendimentoController {
@@ -26,6 +23,17 @@ public class AtendimentoController {
         return atendimentoService.listar();
     }
 
-    
+    @PutMapping("/atendimento")
+    public ResponseEntity<Atendimento>atualizar(@RequestBody Atendimento atendimento){
+        return new ResponseEntity<Atendimento>(atendimentoService.atualizar(atendimento),HttpStatus.OK);
+    }
+    @DeleteMapping("/atendimento/{id}")
+    public void delete (@PathVariable Long id){
+        atendimentoService.remover(id);
+    }
+    @GetMapping("/atendimento/{id}")
+    public ResponseEntity<Atendimento> pegarPorId(@PathVariable long id){
+        return new ResponseEntity<Atendimento>(atendimentoService.pegarPorId(id).get(),HttpStatus.OK);
+    }
 }
 

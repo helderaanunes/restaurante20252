@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EnderecoRepository extends CrudRepository<Endereco, Long> {
 
+    Endereco save(Endereco endereco);
 }

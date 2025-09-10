@@ -20,6 +20,6 @@ public class Cardapio {
     @Column (nullable = false)
     private boolean exibirNoAltoAtendimento;
     @Column (nullable = false)
-    private String visibilidade;
+    private Boolean visibilidade;
 
 }
