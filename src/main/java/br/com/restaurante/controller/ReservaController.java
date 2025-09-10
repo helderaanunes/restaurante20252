@@ -5,10 +5,7 @@ import br.com.restaurante.service.ReservaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ReservaController {
@@ -16,7 +13,7 @@ public class ReservaController {
     @Autowired
     private ReservaService reservaService;
 
-    @PutMapping("/reserva")
+    @PostMapping("/reserva")
     public ResponseEntity<Reserva> salvar (@RequestBody Reserva reserva){
         return new ResponseEntity<Reserva>(
                 reservaService.salvar(reserva)
@@ -26,5 +23,18 @@ public class ReservaController {
     public Iterable<Reserva>listar(){
         return reservaService.listar();
 }
+@PutMapping("/reserva")
+public ResponseEntity<Reserva> atualizar(@RequestBody Reserva reserva){
+        return new ResponseEntity<Reserva>(reservaService.atualizar(reserva),HttpStatus.OK);
+}
+@DeleteMapping("/reserva/{id}")
+    public void  delete(@PathVariable Long id){
+        reservaService.remover(id);
+
+}
+@GetMapping("/reserva/{id}")
+    public ResponseEntity<Reserva> pegarPorId(@PathVariable Long id){
+        return new ResponseEntity<Reserva> (reservaService.pegarPorId(id).get(),HttpStatus.OK);
+    }
 
 }
