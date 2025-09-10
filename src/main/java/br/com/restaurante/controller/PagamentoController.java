@@ -5,10 +5,7 @@ import br.com.restaurante.service.PagamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class PagamentoController {
@@ -17,13 +14,26 @@ public class PagamentoController {
     private PagamentoService pagamentoService;
 
     @PostMapping("/pagamento")
-    public ResponseEntity<Pagamento> salvar(@RequestBody Pagamento pagamento){
+    public ResponseEntity<Pagamento> salvar(@RequestBody Pagamento pagamento) {
         return new ResponseEntity<Pagamento>(
                 pagamentoService.salvar(pagamento), HttpStatus.OK);
     }
 
     @GetMapping("/pagamento")
-    public Iterable<Pagamento> listar(){
+    public Iterable<Pagamento> listar() {
         return pagamentoService.listar();
+    }
+
+    @PutMapping("pagamento")
+    public ResponseEntity<Pagamento> atualizar(@RequestBody Pagamento pagamento) {
+        return new ResponseEntity<Pagamento>(pagamentoService.atualizar(pagamento),HttpStatus.OK);
+    }
+    @DeleteMapping("/pagamento/{id}")
+    public void delete (@PathVariable Long id){
+        pagamentoService.remover(id);
+    }
+    @GetMapping("/pagamento/{id}")
+    public ResponseEntity <Pagamento> pegarPorId(@PathVariable Long id){
+        return new ResponseEntity<Pagamento>(pagamentoService.pegarPorId(id).get(),HttpStatus.OK);
     }
 }
