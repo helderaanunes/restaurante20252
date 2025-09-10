@@ -40,4 +40,6 @@ public class UsuarioController {
         return new ResponseEntity<Usuario>(
                 usuarioService.pegarPorId(id).get(),HttpStatus.OK);
     }
+
 }
+
