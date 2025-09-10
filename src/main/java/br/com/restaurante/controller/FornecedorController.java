@@ -5,10 +5,7 @@ import br.com.restaurante.service.FornecedorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class FornecedorController {
@@ -17,15 +14,35 @@ public class FornecedorController {
     private FornecedorService fornecedorService;
 
     @PostMapping("/fornecedor")
-    public ResponseEntity<Fornecedor> salvar(@RequestBody Fornecedor fornecedor){
+    public ResponseEntity<Fornecedor> salvar(@RequestBody Fornecedor fornecedor) {
         return new ResponseEntity<Fornecedor>(
                 fornecedorService.salvar(fornecedor)
                 , HttpStatus.OK);
 
     }
+
     @GetMapping("/fornecedor")
-    public Iterable<Fornecedor> listar(){
+    public Iterable<Fornecedor> listar() {
         return fornecedorService.listar();
     }
+
+    @PutMapping("/fornecedor")
+    public ResponseEntity<Fornecedor>
+    atualizar(@RequestBody Fornecedor fornecedor){
+        return new ResponseEntity<Fornecedor>(
+                fornecedorService.atualizar(fornecedor),
+                HttpStatus.OK);
+    }
+
+    @DeleteMapping("/fornecedor/{id}")
+    public void delete (@PathVariable long id){
+        fornecedorService.remover(id);
+    }
+    @GetMapping("/fornecedor/{id}")
+    public ResponseEntity<Fornecedor> pegarPorId(@PathVariable long id){
+        return new ResponseEntity<Fornecedor>(
+                fornecedorService.pegarPorId(id).get(),HttpStatus.OK);
+    }
 }
+
 
