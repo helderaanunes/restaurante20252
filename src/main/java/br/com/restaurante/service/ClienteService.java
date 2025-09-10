@@ -5,6 +5,8 @@ import br.com.restaurante.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ClienteService {
 
@@ -17,5 +19,15 @@ public class ClienteService {
     }
 public Iterable<Cliente> listar(){
         return clienteRepository.findAll();
+    }
+    public Cliente atualizar(Cliente cliente) {
+        return clienteRepository.save(cliente);
+    }
+
+        public void remever (Long id){
+            clienteRepository.deleteById(id);
+    }
+    public Optional<Cliente>pegarPorId(Long id){
+        return clienteRepository.findById(id);
     }
 }
