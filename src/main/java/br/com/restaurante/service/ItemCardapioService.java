@@ -5,6 +5,9 @@ import br.com.restaurante.repository.ItemCardapioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+import java.util.Optional;
+
 @Service
 public class ItemCardapioService {
 
@@ -17,5 +20,17 @@ public class ItemCardapioService {
 
     public Iterable<ItemCardapio> listar(){
         return itemCardapioRepository.findAll();
+    }
+
+    public ItemCardapio atualizar(ItemCardapio itemCardapio){
+        return itemCardapioRepository.save(itemCardapio);
+    }
+
+    public void remover(Long id){
+        itemCardapioRepository.deleteById(id);
+    }
+
+    public Optional<ItemCardapio> pegarPorId(Long id){
+        return itemCardapioRepository.findById(id);
     }
 }
