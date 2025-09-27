@@ -5,6 +5,8 @@ import br.com.restaurante.repository.PerfilRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class PerfilService {
     //Regras de Negócio ficam no pacote de serviços
@@ -18,5 +20,15 @@ public class PerfilService {
 
     public Iterable<Perfil> listar(){
         return perfilRepository.findAll();
+    }
+
+    public Perfil atualizar(Perfil perfil){
+        return perfilRepository.save(perfil);
+    }
+    public void remover(long id){
+        perfilRepository.deleteById(id);
+    }
+    public Optional<Perfil> pegarPorId(long id){
+        return perfilRepository.findById(id);
     }
 }

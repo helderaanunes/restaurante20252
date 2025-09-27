@@ -16,4 +16,37 @@ public class Mesa {
     private Integer numero;
     private Integer capacidade;
     private String qrFixo;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Integer getNumero() {
+        return numero;
+    }
+
+    public void setNumero(Integer numero) {
+        this.numero = numero;
+    }
+
+    public Integer getCapacidade() {
+        return capacidade;
+    }
+
+    public void setCapacidade(Integer capacidade) {
+        this.capacidade = capacidade;
+    }
+
+    public String getQrFixo() {
+        return qrFixo;
+    }
+
+    public void setQrFixo(String qrFixo) {
+        this.qrFixo = qrFixo;
+    }
+
 }
