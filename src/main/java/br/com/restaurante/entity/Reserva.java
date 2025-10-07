@@ -19,4 +19,28 @@ public class Reserva {
     private LocalDateTime dataHora;
     private Integer pessoas;
     //private StatusReserva status;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getDataHora() {
+        return dataHora;
+    }
+
+    public void setDataHora(LocalDateTime dataHora) {
+        this.dataHora = dataHora;
+    }
+
+    public Integer getPessoas() {
+        return pessoas;
+    }
+
+    public void setPessoas(Integer pessoas) {
+        this.pessoas = pessoas;
+    }
 }
