@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class RestauranteController {
 
     @Autowired
@@ -19,8 +20,6 @@ public class RestauranteController {
     @PostMapping("/restaurante")
     public ResponseEntity<Restaurante> salvar (@RequestBody Restaurante restaurante){
      return new ResponseEntity<Restaurante>(restauranteService.salvar(restaurante), HttpStatus.OK);
-
-
     }
 
     @GetMapping("/restaurante")
