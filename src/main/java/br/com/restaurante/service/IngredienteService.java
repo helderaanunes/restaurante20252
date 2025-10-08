@@ -3,9 +3,10 @@ package br.com.restaurante.service;
 import br.com.restaurante.entity.Ingrediente;
 import br.com.restaurante.repository.IngredienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
+@Service
 public class IngredienteService {
     @Autowired
     private IngredienteRepository ingredienteRepository;
