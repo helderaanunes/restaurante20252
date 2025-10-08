@@ -7,30 +7,33 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://localhost:3000") // liberando só pro React dev server
+@RestController
+@RequestMapping("/ingrediente") // Opcional, mas ajuda na organização
 public class IngredienteController {
     @Autowired
     private IngredienteService ingredienteService;
 
-    @PostMapping("/ingrediente")
+    @PostMapping
     public ResponseEntity<Ingrediente> salvar (@RequestBody  Ingrediente ingrediente){
         return new  ResponseEntity<Ingrediente>(ingredienteService.salvar(ingrediente),HttpStatus.OK);
     }
 
-    @GetMapping("/ingrediente")
+    @GetMapping
     public Iterable<Ingrediente>listar(){
         return ingredienteService.listar();
     }
 
-    @PutMapping("/ingrediente")
+    @PutMapping
     public ResponseEntity<Ingrediente>atualizar(@RequestBody Ingrediente ingrediente){
         return new ResponseEntity<Ingrediente>(ingredienteService.atualizar(ingrediente), HttpStatus.OK);
     }
 
-    @DeleteMapping("/ingrediente/{id}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id){
         ingredienteService.remover(id);
     }
-    @GetMapping("/ingrediente/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Ingrediente> pegarPorId(@PathVariable Long id){
         return new ResponseEntity<Ingrediente>(ingredienteService.pegarPorId(id).get(), HttpStatus.OK);
     }
