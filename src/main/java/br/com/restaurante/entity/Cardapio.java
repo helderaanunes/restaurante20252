@@ -22,6 +22,15 @@ public class Cardapio {
     @Column (nullable = false)
     private Boolean visibilidade;
 
+
+    public LocalDate getInicioVigencia() {
+        return inicioVigencia;
+    }
+
+    public void setInicioVigencia(LocalDate inicioVigencia) {
+        this.inicioVigencia = inicioVigencia;
+    }
+
     public Long getId() {
         return id;
     }
@@ -38,12 +47,13 @@ public class Cardapio {
         this.nome = nome;
     }
 
-    public LocalDate getInicioVigencia() {
-        return inicioVigencia;
+
+    public LocalDate getFimVigencia() {
+        return fimVigencia;
     }
 
-    public void setInicioVigencia(LocalDate inicioVigencia) {
-        this.inicioVigencia = inicioVigencia;
+    public void setFimVigencia(LocalDate fimVigencia) {
+        this.fimVigencia = fimVigencia;
     }
 
     public boolean isExibirNoAltoAtendimento() {
@@ -52,14 +62,6 @@ public class Cardapio {
 
     public void setExibirNoAltoAtendimento(boolean exibirNoAltoAtendimento) {
         this.exibirNoAltoAtendimento = exibirNoAltoAtendimento;
-    }
-
-    public LocalDate getFimVigencia() {
-        return fimVigencia;
-    }
-
-    public void setFimVigencia(LocalDate fimVigencia) {
-        this.fimVigencia = fimVigencia;
     }
 
     public Boolean getVisibilidade() {
