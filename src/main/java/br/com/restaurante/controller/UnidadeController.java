@@ -9,11 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-<<<<<<< HEAD
+
 @CrossOrigin(origins = "*")
-=======
-@CrossOrigin
->>>>>>> 3333c4abb6672b8e02c59905a14d29ff366d249c
+
 public class UnidadeController {
     @Autowired
     private UnidadeService unidadeService;
