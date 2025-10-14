@@ -1,5 +1,3 @@
-
-
 package br.com.restaurante.repository;
 
 import br.com.restaurante.entity.Unidade;
@@ -10,3 +8,4 @@ import org.springframework.stereotype.Repository;
 
 public interface UnidadeRepository extends CrudRepository <Unidade,Long> {
 }
+
