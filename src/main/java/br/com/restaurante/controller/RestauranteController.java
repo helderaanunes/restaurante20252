@@ -40,6 +40,4 @@ public class RestauranteController {
     public ResponseEntity<Restaurante> pegarPorId(@PathVariable long id){
         return new ResponseEntity<Restaurante>(restauranteService.pegarPorId(id).get(), HttpStatus.OK);
     }
-
-
 }
