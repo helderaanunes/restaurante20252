@@ -6,20 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 @RestController
-@CrossOrigin (origins = "*")
-
+@CrossOrigin(origins = "*")
+@RequestMapping
 public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
 
     @PostMapping("/usuario")
-    public ResponseEntity<Usuario> salvar (@RequestBody Usuario usuario){
-        return new ResponseEntity<Usuario>(
-                usuarioService.salvar(usuario)
-                , HttpStatus.OK);
+    public ResponseEntity<Usuario> salvar(@RequestBody Usuario usuario){
+        return new ResponseEntity<>(usuarioService.salvar(usuario), HttpStatus.OK);
     }
 
     @GetMapping("/usuario")
@@ -27,21 +24,20 @@ public class UsuarioController {
         return usuarioService.listar();
     }
 
-    @PutMapping("/usuario")
-    public ResponseEntity<Usuario>
-    atualizar(@RequestBody Usuario usuario){
-        return new ResponseEntity<Usuario>
-                (usuarioService.atualizar(usuario),HttpStatus.OK);
+    // >>> agora com {id} para casar com o front
+    @PutMapping("/usuario/{id}")
+    public ResponseEntity<Usuario> atualizar(@PathVariable Long id, @RequestBody Usuario usuario){
+        usuario.setId(id); // garante que o id do path prevalece
+        return new ResponseEntity<>(usuarioService.atualizar(usuario), HttpStatus.OK);
     }
+
     @DeleteMapping("/usuario/{id}")
-    public void delete (@PathVariable Long id){
+    public void delete(@PathVariable Long id){
         usuarioService.remover(id);
     }
+
     @GetMapping("/usuario/{id}")
     public ResponseEntity<Usuario> pegarPorId(@PathVariable Long id){
-        return new ResponseEntity<Usuario>(
-                usuarioService.pegarPorId(id).get(),HttpStatus.OK);
+        return new ResponseEntity<>(usuarioService.pegarPorId(id).get(), HttpStatus.OK);
     }
-
 }
-
