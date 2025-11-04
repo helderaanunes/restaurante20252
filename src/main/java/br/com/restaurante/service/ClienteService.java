@@ -24,10 +24,12 @@ public Iterable<Cliente> listar(){
         return clienteRepository.save(cliente);
     }
 
-        public void remever (Long id){
+        public void remover (Long id){
             clienteRepository.deleteById(id);
     }
     public Optional<Cliente>pegarPorId(Long id){
         return clienteRepository.findById(id);
     }
+
+
 }

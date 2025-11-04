@@ -7,9 +7,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 
 @RestController
-public class clientecontroller {
+public class ClienteController {
 
     @Autowired
     private    ClienteService clienteService;
@@ -18,25 +20,31 @@ public class clientecontroller {
     public ResponseEntity <Cliente> salvar (@RequestBody Cliente cliente ){
         return new ResponseEntity<Cliente>(
                 clienteService.salvar(cliente)
-                        , HttpStatus.OK);
+                , HttpStatus.OK);
 
 
     }
     @GetMapping("/cliente")
     public Iterable<Cliente> listar(){
         return clienteService.listar();
-            }
-    @PutMapping("/Cliente")
+    }
+
+    @PutMapping("/cliente")
     public ResponseEntity<Cliente> atualizar(@RequestBody Cliente cliente){
         return new ResponseEntity<Cliente>(clienteService.atualizar(cliente),HttpStatus.OK);
     }
     @DeleteMapping("/cliente/{id}")
     public void delete(@PathVariable Long id) {
-        clienteService.remever(id);
+        clienteService.remover(id);
     }
     @GetMapping("/cliente/{id}")
     public ResponseEntity<Cliente> pegarPorId(@PathVariable Long id){
-        return new ResponseEntity<Cliente>(
-                clienteService.pegarPorId(id).get(),HttpStatus.OK);
+        Optional<Cliente> cliente = clienteService.pegarPorId(id);
+        if (cliente.isPresent()) {
+            return new ResponseEntity<>(cliente.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
     }
 }
