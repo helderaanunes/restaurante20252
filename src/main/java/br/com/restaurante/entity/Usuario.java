@@ -17,6 +17,8 @@ public class Usuario {
         private String email;
     private String senha;
     private boolean ativo;
+    @ManyToOne
+    private Permissao permissao;
 
     public String getSenha() {
         return senha;
@@ -56,5 +58,13 @@ public class Usuario {
 
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public Permissao getPermissao() {
+        return permissao;
+    }
+
+    public void setPermissao(Permissao permissao) {
+        this.permissao = permissao;
     }
 }
