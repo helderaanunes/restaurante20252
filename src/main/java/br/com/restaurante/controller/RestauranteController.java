@@ -11,32 +11,37 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+<<<<<<< Updated upstream
+=======
+@RequestMapping("/restaurante")
+>>>>>>> Stashed changes
 @CrossOrigin(origins = "*")
 public class RestauranteController {
 
     @Autowired
     private RestauranteService restauranteService;
 
-    @PostMapping("/restaurante")
+    @PostMapping()
     public ResponseEntity<Restaurante> salvar (@RequestBody Restaurante restaurante){
      return new ResponseEntity<Restaurante>(restauranteService.salvar(restaurante), HttpStatus.OK);
     }
 
-    @GetMapping("/restaurante")
+    @GetMapping()
     public Iterable<Restaurante> listar(){
         return restauranteService.listar();
     }
 
-    @PutMapping("/restaurante)")
+    @PutMapping()
     public ResponseEntity<Restaurante>
     atualizar(@RequestBody Restaurante restaurante){
         return new ResponseEntity<Restaurante>(restauranteService.atualizar(restaurante), HttpStatus.OK);
     }
-    @DeleteMapping("/restaurante/{id}")
+    @DeleteMapping("/{id}")
     public  void delete(@PathVariable long id){
         restauranteService.remover(id);
+
     }
-    @GetMapping("/restaurante;{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Restaurante> pegarPorId(@PathVariable long id){
         return new ResponseEntity<Restaurante>(restauranteService.pegarPorId(id).get(), HttpStatus.OK);
     }
