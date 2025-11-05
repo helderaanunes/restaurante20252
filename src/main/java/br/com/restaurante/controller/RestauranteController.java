@@ -9,6 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.Optional;
+
+
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -27,19 +30,37 @@ public class RestauranteController {
         return restauranteService.listar();
     }
 
-    @PutMapping("/restaurante)")
-    public ResponseEntity<Restaurante>
-    atualizar(@RequestBody Restaurante restaurante){
-        return new ResponseEntity<Restaurante>(restauranteService.atualizar(restaurante), HttpStatus.OK);
+   // @PutMapping("/restaurante)")
+//    public ResponseEntity<Restaurante>
+//    atualizar(@RequestBody Restaurante restaurante){
+//        return new ResponseEntity<Restaurante>(restauranteService.atualizar(restaurante), HttpStatus.OK);
+//    }
+
+    @PutMapping("/restaurante/{id}")
+    public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody Restaurante restauranteAtualizado) {
+        Optional<Restaurante> restauranteOptional = restauranteService.pegarPorId(id);
+
+        if (restauranteOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        Restaurante restauranteExistente = restauranteOptional.get();
+        // Atualiza os campos permitidos (exemplo: nome e cnpj)
+        restauranteExistente.setNome(restauranteAtualizado.getNome());
+        restauranteExistente.setCnpj(restauranteAtualizado.getCnpj());
+
+        Restaurante atualizado = restauranteService.atualizar(restauranteExistente);
+        return ResponseEntity.ok(atualizado);
     }
+
+
     @DeleteMapping("/restaurante/{id}")
     public  void delete(@PathVariable long id){
         restauranteService.remover(id);
     }
     @GetMapping("/restaurante;{id}")
-    public ResponseEntity<Restaurante> pegarPorId(@PathVariable long id){
-        return new ResponseEntity<Restaurante>(restauranteService.pegarPorId(id).get(), HttpStatus.OK);
+    public Optional<Restaurante> pegarPorId(Long id) {
+        return restauranteService.pegarPorId(id);
     }
-
 
 }

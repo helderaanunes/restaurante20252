@@ -19,9 +19,11 @@ public class RestauranteService {
     public Iterable<Restaurante> listar(){
         return restauranteRepository.findAll();
     }
+
     public Restaurante atualizar(Restaurante restaurante){
         return restauranteRepository.save(restaurante);
     }
+
     public  void remover(Long id){
         restauranteRepository.deleteById(id);
     }
