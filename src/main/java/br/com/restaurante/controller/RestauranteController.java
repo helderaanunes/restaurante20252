@@ -11,10 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-<<<<<<< Updated upstream
-=======
+
 @RequestMapping("/restaurante")
->>>>>>> Stashed changes
+
 @CrossOrigin(origins = "*")
 public class RestauranteController {
 

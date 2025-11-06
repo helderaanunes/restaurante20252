@@ -8,43 +8,42 @@ import lombok.Data;
 import lombok.Generated;
 
 import java.time.Instant;
-
 @Entity
 @Data
 public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String TipoAtendimento;
-    private OrderStatus StatusPedido;
-    private String Origem;
-    private Double Subtotal;
-    private Double Total;
-    private Instant CriadoEM;
-    private Instant AtualizadoEm;
+    private String tipoAtendimento;
+    private OrderStatus statusPedido;
+    private String origem;
+    private Double subtotal;
+    private Double total;
+    private Instant criadoEM;
+    private Instant atualizadoEm;
 
     public OrderStatus getStatusPedido() {
-        return StatusPedido;
+        return statusPedido;
     }
 
     public void setStatusPedido(OrderStatus statusPedido) {
-        StatusPedido = statusPedido;
+        statusPedido = statusPedido;
     }
 
     public Instant getAtualizadoEm() {
-        return AtualizadoEm;
+        return atualizadoEm;
     }
 
     public void setAtualizadoEm(Instant atualizadoEm) {
-        AtualizadoEm = atualizadoEm;
+        atualizadoEm = atualizadoEm;
     }
 
     public Instant getCriadoEM() {
-        return CriadoEM;
+        return criadoEM;
     }
 
     public void setCriadoEM(Instant criadoEM) {
-        CriadoEM = criadoEM;
+        criadoEM = criadoEM;
     }
 
     public Long getId() {
@@ -56,34 +55,34 @@ public class Pedido {
     }
 
     public String getOrigem() {
-        return Origem;
+        return origem;
     }
 
     public void setOrigem(String origem) {
-        Origem = origem;
+        origem = origem;
     }
 
     public Double getSubtotal() {
-        return Subtotal;
+        return subtotal;
     }
 
     public void setSubtotal(Double subtotal) {
-        Subtotal = subtotal;
+        subtotal = subtotal;
     }
 
     public String getTipoAtendimento() {
-        return TipoAtendimento;
+        return tipoAtendimento;
     }
 
     public void setTipoAtendimento(String tipoAtendimento) {
-        TipoAtendimento = tipoAtendimento;
+        tipoAtendimento = tipoAtendimento;
     }
 
     public Double getTotal() {
-        return Total;
+        return total;
     }
 
     public void setTotal(Double total) {
-        Total = total;
+        total = total;
     }
 }
