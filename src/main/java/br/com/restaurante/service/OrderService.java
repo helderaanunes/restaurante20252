@@ -16,7 +16,8 @@ public class OrderService {
     }
 
     public List<Pedido> getPendingOrders() {
-        return repo.findByStatusOrderByCreatedAtAsc(OrderStatus.PENDING);
+        return repo.findByStatusPedidoOrderByCriadoEMAsc(OrderStatus.PENDING);
+
     }
 
     @Transactional

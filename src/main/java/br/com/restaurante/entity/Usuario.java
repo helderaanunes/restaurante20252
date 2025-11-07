@@ -67,4 +67,6 @@ public class Usuario {
     public void setPermissao(Permissao permissao) {
         this.permissao = permissao;
     }
+
+
 }
