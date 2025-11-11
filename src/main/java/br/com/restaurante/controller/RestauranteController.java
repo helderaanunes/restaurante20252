@@ -14,21 +14,25 @@ import java.util.Optional;
 
 
 @RestController
+
+@RequestMapping("/restaurante")
+
 @CrossOrigin(origins = "*")
 public class RestauranteController {
 
     @Autowired
     private RestauranteService restauranteService;
 
-    @PostMapping("/restaurante")
+    @PostMapping()
     public ResponseEntity<Restaurante> salvar (@RequestBody Restaurante restaurante){
      return new ResponseEntity<Restaurante>(restauranteService.salvar(restaurante), HttpStatus.OK);
     }
 
-    @GetMapping("/restaurante")
+    @GetMapping()
     public Iterable<Restaurante> listar(){
         return restauranteService.listar();
     }
+
 
    // @PutMapping("/restaurante)")
 //    public ResponseEntity<Restaurante>
@@ -36,7 +40,7 @@ public class RestauranteController {
 //        return new ResponseEntity<Restaurante>(restauranteService.atualizar(restaurante), HttpStatus.OK);
 //    }
 
-    @PutMapping("/restaurante/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody Restaurante restauranteAtualizado) {
         Optional<Restaurante> restauranteOptional = restauranteService.pegarPorId(id);
 
@@ -54,13 +58,16 @@ public class RestauranteController {
     }
 
 
-    @DeleteMapping("/restaurante/{id}")
+    @DeleteMapping("/{id}")
+
     public  void delete(@PathVariable long id){
         restauranteService.remover(id);
+
     }
-    @GetMapping("/restaurante;{id}")
-    public Optional<Restaurante> pegarPorId(Long id) {
-        return restauranteService.pegarPorId(id);
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Restaurante> pegarPorId(@PathVariable long id){
+        return new ResponseEntity<Restaurante>(restauranteService.pegarPorId(id).get(), HttpStatus.OK);
     }
 
 }

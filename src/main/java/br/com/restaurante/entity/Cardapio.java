@@ -22,6 +22,7 @@ public class Cardapio {
     @Column (nullable = false)
     private Boolean visibilidade;
 
+
     public LocalDate getInicioVigencia() {
         return inicioVigencia;
     }
@@ -45,6 +46,7 @@ public class Cardapio {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
 
     public LocalDate getFimVigencia() {
         return fimVigencia;

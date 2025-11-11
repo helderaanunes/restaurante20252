@@ -8,40 +8,41 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin (origins = "*")
-
+@CrossOrigin(origins = "*")
+@RequestMapping("/usuario")
 public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
 
-    @PostMapping("/usuario")
-    public ResponseEntity<Usuario> salvar (@RequestBody Usuario usuario){
-        return new ResponseEntity<Usuario>(
-                usuarioService.salvar(usuario)
-                , HttpStatus.OK);
+    @PostMapping
+    public ResponseEntity<Usuario> salvar(@RequestBody Usuario usuario) {
+        Usuario salvo = usuarioService.salvar(usuario);
+        return new ResponseEntity<>(salvo, HttpStatus.CREATED);
     }
 
-    @GetMapping("/usuario")
-    public Iterable<Usuario> listar(){
-        return usuarioService.listar();
+    @GetMapping
+    public ResponseEntity<Iterable<Usuario>> listar() {
+        return ResponseEntity.ok(usuarioService.listar());
     }
 
-    @PutMapping("/usuario")
-    public ResponseEntity<Usuario>
-    atualizar(@RequestBody Usuario usuario){
-        return new ResponseEntity<Usuario>
-                (usuarioService.atualizar(usuario),HttpStatus.OK);
+    @PutMapping("/{id}")
+    public ResponseEntity<Usuario> atualizar(@PathVariable Long id, @RequestBody Usuario usuario) {
+        usuario.setId(id);
+        Usuario atualizado = usuarioService.atualizar(usuario);
+        return ResponseEntity.ok(atualizado);
     }
-    @DeleteMapping("/usuario/{id}")
-    public void delete (@PathVariable Long id){
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         usuarioService.remover(id);
-    }
-    @GetMapping("/usuario/{id}")
-    public ResponseEntity<Usuario> pegarPorId(@PathVariable Long id){
-        return new ResponseEntity<Usuario>(
-                usuarioService.pegarPorId(id).get(),HttpStatus.OK);
+        return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Usuario> pegarPorId(@PathVariable Long id) {
+        return usuarioService.pegarPorId(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 }
-

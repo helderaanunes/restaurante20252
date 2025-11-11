@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class PerfilController {
     @Autowired //Construtor e TODOS os métodos de interface abstrata ->Ingeção de Dependência
     private PerfilService perfilService;

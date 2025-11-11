@@ -14,9 +14,12 @@ public class Usuario {
     @Column (nullable = false)
     private String nome;
     @Column (nullable = false, unique = true)
-        private String email;
+    private String email;
     private String senha;
+    private String role;
     private boolean ativo;
+    @ManyToOne
+    private Permissao permissao;
 
     public String getSenha() {
         return senha;
@@ -57,4 +60,18 @@ public class Usuario {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
+
+    public Permissao getPermissao() {
+        return permissao;
+    }
+
+    public void setPermissao(Permissao permissao) {
+        this.permissao = permissao;
+    }
+
+
+
+    public String getRole() { return role; }
+    public void setRole(String role) { this.role = role; }
+
 }
