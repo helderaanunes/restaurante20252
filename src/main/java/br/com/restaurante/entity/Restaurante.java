@@ -1,37 +1,32 @@
 package br.com.restaurante.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
 
 @Entity
-@Data
 public class Restaurante {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @Column (nullable = false)
     private String nome;
-
-    @Column (nullable = false, unique = true)
     private String cnpj;
 
-    public long getId() {
+    // getters e setters
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     public String getNome() {
-
         return nome;
     }
 
     public void setNome(String nome) {
-
         this.nome = nome;
     }
 
@@ -40,9 +35,6 @@ public class Restaurante {
     }
 
     public void setCnpj(String cnpj) {
-
         this.cnpj = cnpj;
     }
-
-
 }
