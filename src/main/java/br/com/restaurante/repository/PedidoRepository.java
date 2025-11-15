@@ -13,7 +13,7 @@ import java.util.List;
 public interface PedidoRepository extends CrudRepository<Pedido, Long> {
 
     @Query(
-            value = "SELECT * FROM pedido WHERE status_pedido = 'PRONTO' ORDER BY id ASC",
+            value = "SELECT * FROM pedido WHERE status_pedido = 'COMPLETED' ORDER BY id ASC",
             nativeQuery = true
     )
     List<Pedido> buscarPedidosProntos();
