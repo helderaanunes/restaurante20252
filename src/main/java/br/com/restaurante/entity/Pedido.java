@@ -24,7 +24,4 @@ public class Pedido {
 
     private Instant criadoEm;
     private Instant atualizadoEm;
-
-    // Você NÃO precisa dos getters e setters,
-    // porque o Lombok (@Data) já cria tudo automaticamente.
 }

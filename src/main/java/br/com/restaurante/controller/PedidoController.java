@@ -18,9 +18,15 @@ public class PedidoController {
         this.pedidoService = pedidoService;
     }
 
+    // Pedidos prontos
     @GetMapping("/prontos")
     public List<Pedido> listarPedidosProntos() {
         return pedidoService.listarPedidosProntos();
     }
-}
 
+    // Pedidos em preparação
+    @GetMapping("/preparando")
+    public List<Pedido> listarPedidosEmPreparacao() {
+        return pedidoService.listarPedidosEmPreparacao();
+    }
+}

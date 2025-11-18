@@ -2,7 +2,7 @@ package br.com.restaurante.entity;
 
 public enum OrderStatus {
     PENDING,
-    //IN_PROGRESS,
+  //  IN_PROGRESS,
     COMPLETED
 }
 

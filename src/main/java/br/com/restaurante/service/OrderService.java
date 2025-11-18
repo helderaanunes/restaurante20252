@@ -3,22 +3,20 @@ package br.com.restaurante.service;
 import br.com.restaurante.entity.OrderStatus;
 import br.com.restaurante.entity.Pedido;
 import br.com.restaurante.repository.OrderRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
 public class OrderService {
-    private final OrderRepository repo;
+    @Autowired
+    private  OrderRepository repo;
 
-    public OrderService(OrderRepository repo) {
-        this.repo = repo;
-    }
-
-    public List<Pedido> getPendingOrders() {
-        return repo.findByStatusPedidoOrderByCriadoEMAsc(OrderStatus.PENDING);
-
-    }
+//    public List<Pedido> getPendingOrders() {
+//        return repo.findByStatusPedidoOrderByCriadoEMAsc(OrderStatus.PENDING);
+//
+//    }
 
     @Transactional
     public Pedido markAsCompleted(Long id) {
