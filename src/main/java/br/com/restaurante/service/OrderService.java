@@ -10,19 +10,35 @@ import java.util.List;
 
 @Service
 public class OrderService {
+
     @Autowired
-    private  OrderRepository repo;
+    private OrderRepository repo;
 
-//    public List<Pedido> getPendingOrders() {
-//        return repo.findByStatusPedidoOrderByCriadoEMAsc(OrderStatus.PENDING);
-//
-//    }
+    public OrderService(OrderRepository repo) {
+        this.repo = repo;
+    }
 
+    // LISTAR PEDIDOS PENDENTES
+    public List<Pedido> getPendingOrders() {
+        return repo.findByStatusPedidoOrderByIdAsc(OrderStatus.PENDING);
+    }
+
+    // LISTAR PEDIDOS CONCLUÍDOS
+    public List<Pedido> getCompletedOrders() {
+        return repo.findByStatusPedidoOrderByIdAsc(OrderStatus.COMPLETED);
+    }
+
+    // SALVAR PEDIDO NOVO
+    public Pedido salvar(Pedido pedido) {
+        return repo.save(pedido);
+    }
+
+    // MARCAR COMO CONCLUÍDO
     @Transactional
     public Pedido markAsCompleted(Long id) {
         Pedido order = repo.findById(id).orElseThrow();
         order.setStatusPedido(OrderStatus.COMPLETED);
-        Pedido saved = repo.save(order);
-        return saved;
+        return repo.save(order);
     }
 }
+

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.Instant;
+import java.util.List;
 
 @Entity
 @Data
@@ -21,6 +22,9 @@ public class Pedido {
     private String origem;
     private Double subtotal;
     private Double total;
+
+    @ElementCollection
+    private List<OrderItem> itens;
 
     private Instant criadoEm;
     private Instant atualizadoEm;

@@ -6,8 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 @Repository
 public interface OrderRepository extends JpaRepository<Pedido, Long> {
-   // List<Pedido> findByStatusPedidoOrderByCriadoEMAsc(OrderStatus statusPedido);
 
+    // Buscar pedidos por status e ordenar pelo ID
+    List<Pedido> findByStatusPedidoOrderByIdAsc(OrderStatus status);
 }
